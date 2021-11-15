@@ -29,6 +29,14 @@ resource "aws_security_group" "security_for_my_server" {
   }
 
   ingress {
+    description      = "https"
+    from_port        = 443
+    to_port          = 443
+    protocol         = "tcp"
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
     description = "http"
     from_port   = 80
     to_port     = 80
