@@ -1,0 +1,81 @@
+provider "aws" {}
+
+resource "aws_security_group" "security_for_my_server" {
+  name        = "my_security_group"
+  description = "all for my server"
+
+  ingress {
+    description = "server port"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "ssh"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["194.143.145.130/32"]
+  }
+
+  ingress {
+    description = "https"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "http"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "http"
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+
+resource "aws_instance" "my_linux" {
+  ami           = "ami-04ad2567c9e3d7893"
+  instance_type = "t2.micro"
+
+  vpc_security_group_ids = [aws_security_group.security_for_my_server.id]
+
+  user_data = file("/home/mykytaoleksin/Downloads/start_server.sh")
+
+  tags = {
+    Name = "Payment system"
+  }
+
+  key_name = "nacenik-test"
+}
+
+resource "aws_db_instance" "payment-system" {
+  identifier             = "payment-system"
+  instance_class         = "db.t2.micro"
+  engine                 = "postgres"
+  engine_version         = "12.8"
+  username               = "postgres"
+  password               = "11111111"
+  port                   = "5432"
+  vpc_security_group_ids = [aws_security_group.security_for_my_server.id]
+
+}
