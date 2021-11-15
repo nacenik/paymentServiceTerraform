@@ -59,7 +59,7 @@ resource "aws_instance" "my_linux" {
 
   vpc_security_group_ids = [aws_security_group.security_for_my_server.id]
 
-  user_data = << EOF
+  user_data = <<EOF
 #!/bin/bash
 sudo yum update -y
 sudo yum install -y docker
