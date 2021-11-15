@@ -59,7 +59,14 @@ resource "aws_instance" "my_linux" {
 
   vpc_security_group_ids = [aws_security_group.security_for_my_server.id]
 
-  user_data = file("/home/mykytaoleksin/Downloads/start_server.sh")
+  user_data = << EOF
+#!/bin/bash
+sudo yum update -y
+sudo yum install -y docker
+sudo service docker start
+sudo docker pull nacenik/stage-payment-system-aws:v2
+sudo docker run -d -p 8080:8080 nacenik/stage-payment-system-aws:v2
+EOF
 
   tags = {
     Name = "Payment system"
