@@ -58,6 +58,10 @@ resource "aws_security_group" "security_for_my_server" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = {
+    Name = "Payment system security group"
+  }
 }
 
 
