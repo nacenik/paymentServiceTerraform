@@ -71,14 +71,14 @@ resource "aws_instance" "my_linux" {
 
   vpc_security_group_ids = [aws_security_group.security_for_my_server.id]
 
-  user_data = <<EOF
+  user_data = <<-EOT
 #!/bin/bash
 yum update -y
 yum install -y docker
 service docker start
 docker pull nacenik/stage-payment-system-aws:v2
 docker run -d -p 8080:8080 nacenik/stage-payment-system-aws:v2
-EOF
+  EOT
 
   tags = {
     Name = "Payment system"
