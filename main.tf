@@ -21,19 +21,12 @@ resource "aws_security_group" "security_for_my_server" {
   }
 
   ingress {
-    description = "https-ipv4"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description      = "https-ipv6"
+    description      = "TLS from VPC"
     from_port        = 443
     to_port          = 443
     protocol         = "tcp"
-    ipv6_cidr_blocks = ["::/0"]
+    cidr_blocks      = [aws_vpc.main.cidr_block]
+    ipv6_cidr_blocks = [aws_vpc.main.ipv6_cidr_block]
   }
 
   ingress {
