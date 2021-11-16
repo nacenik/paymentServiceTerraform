@@ -3,6 +3,7 @@ provider "aws" {}
 resource "aws_security_group" "security_for_my_server" {
   name        = "my_security_group"
   description = "all for my server"
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     description = "server port"
