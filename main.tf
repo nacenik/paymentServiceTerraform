@@ -73,11 +73,11 @@ resource "aws_instance" "my_linux" {
 
   user_data = <<EOF
 #!/bin/bash
-sudo yum update -y
-sudo yum install -y docker
-sudo service docker start
-sudo docker pull nacenik/stage-payment-system-aws:v2
-sudo docker run -d -p 8080:8080 nacenik/stage-payment-system-aws:v2
+yum update
+yum install docker
+service docker start
+docker pull nacenik/stage-payment-system-aws:v2
+docker run -d -p 8080:8080 nacenik/stage-payment-system-aws:v2
 EOF
 
   tags = {
