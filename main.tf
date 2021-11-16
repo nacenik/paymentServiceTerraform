@@ -73,8 +73,8 @@ resource "aws_instance" "my_linux" {
 
   user_data = <<EOF
 #!/bin/bash
-yum update
-yum install docker
+yum update -y
+yum install -y docker
 service docker start
 docker pull nacenik/stage-payment-system-aws:v2
 docker run -d -p 8080:8080 nacenik/stage-payment-system-aws:v2
