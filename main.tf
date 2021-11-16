@@ -2,7 +2,7 @@ provider "aws" {}
 
 resource "aws_security_group" "security_for_my_server" {
   name        = "my_security_group"
-  description = "all for my server"
+  description = "all settings for my server"
 
   ingress {
     description = "server port"
