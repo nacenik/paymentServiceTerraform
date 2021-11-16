@@ -2,7 +2,7 @@ provider "aws" {}
 
 resource "aws_security_group" "security_for_my_server" {
   name        = "my_security_group"
-  description = "all settings for my server"
+  description = "all for my server"
 
   ingress {
     description = "server port"
@@ -96,5 +96,6 @@ resource "aws_db_instance" "payment-system" {
   password               = "11111111"
   port                   = "5432"
   vpc_security_group_ids = [aws_security_group.security_for_my_server.id]
+  skip_final_snapshot    = false
 
 }
