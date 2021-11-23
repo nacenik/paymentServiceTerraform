@@ -60,7 +60,7 @@ resource "aws_security_group" "security_for_my_server" {
 
 
 resource "aws_instance" "my_linux" {
-  ami           = "ami-04ad2567c9e3d7893"
+  ami           = "ami-04902260ca3d33422"
   instance_type = "t2.micro"
 
   vpc_security_group_ids = [aws_security_group.security_for_my_server.id]
