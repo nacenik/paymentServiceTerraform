@@ -72,15 +72,6 @@ sudo yum install -y docker
 sudo service docker start
 sudo docker pull nacenik/stage-payment-system-aws:v2
 sudo docker run -d -p 8080:8080 nacenik/stage-payment-system-aws:v2
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-aws configure
-AKIAVQJWDT3DGEIBN3OI
-4ydcTsShQnKn4jQfni0q0229MDsTa6VenR1eNA3p
-us-east-1
-
-
 
   EOT
 
