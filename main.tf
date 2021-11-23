@@ -93,7 +93,6 @@ resource "aws_db_instance" "payment-system" {
   port                   = "5432"
   vpc_security_group_ids = [aws_security_group.security_for_my_server.id]
   skip_final_snapshot    = false
-
 }
 
 resource "aws_s3_bucket" "payment" {
