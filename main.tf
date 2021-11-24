@@ -109,7 +109,8 @@ resource "aws_s3_bucket" "payment" {
 resource "aws_iam_role" "system_manager_role_for_ec2" {
   name = "system_manager_role_for_ec2"
 
-  assume_role_policy = jsonencode({
+  assume_role_policy = <<EOF
+  {
     "Version" : "2012-10-17",
     "Statement" : [
       {
@@ -202,7 +203,9 @@ resource "aws_iam_role" "system_manager_role_for_ec2" {
         "Resource" : "*"
       }
     ]
-  })
+  }
+EOF
+
   tags = {
     tag-key = "tag-value"
   }
