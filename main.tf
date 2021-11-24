@@ -133,7 +133,7 @@ EOF
 
 resource "aws_iam_role_policy_attachment" "ec2-read-only-policy-attachment" {
   role       = aws_iam_role.system_manager_role_for_ec2.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2RoleforSSM"
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
 }
 
 resource "aws_iam_instance_profile" "ec2_profile" {
